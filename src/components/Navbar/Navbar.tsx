@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
         <div className="nav-links">
           <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
           <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
-          <a href="/#services" className="nav-link">Services</a>
+          <Link to="/#services" className="nav-link">Services</Link>
           <Link to="/about#contact" className="btn-contact">Contact</Link>
         </div>
 
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
       <div className="nav-drawer">
         <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={close}>Home</Link>
         <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={close}>About</Link>
-        <a href="/#services" className="nav-link" onClick={close}>Services</a>
+        <Link to="/#services" className="nav-link" onClick={close}>Services</Link>
         <Link to="/about#contact" className="btn-contact" onClick={close}>Contact</Link>
       </div>
     </nav>
