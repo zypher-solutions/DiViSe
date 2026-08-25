@@ -1,0 +1,170 @@
+.navbar {
+  background-color: var(--fog-white);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 5%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 36px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--navy-deep);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--signal-blue);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--navy-deep);
+}
+
+.btn-contact {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  background-color: var(--signal-blue);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  font-size: 16px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-contact:hover {
+  background-color: var(--naval-blue);
+  transform: translateY(-1px);
+}
+
+/* Mobile hamburger state */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--navy-deep);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile nav drawer */
+.nav-drawer {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--fog-white);
+  padding: 16px 5% 24px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.nav-drawer .nav-link {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  font-size: 15px;
+}
+
+.nav-drawer .btn-contact {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* Floating Navbar specific to Home and About Page */
+.navbar.navbar-floating {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Transparent State (Only when at the top of About page) */
+.navbar.navbar-transparent {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Make text and hamburger white when transparent to contrast with the dark hero */
+.navbar.navbar-transparent .nav-link {
+  color: #ffffff;
+}
+
+.navbar.navbar-transparent .nav-link.active::after {
+  background-color: #ffffff;
+}
+
+.navbar.navbar-transparent .nav-hamburger span {
+  background-color: #ffffff;
+}
+
+/* Invert the logo to white if it's dark by default */
+.navbar.navbar-transparent .logo {
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 0 5%;
+  }
+
+  /* Hide desktop nav links */
+  .navbar .nav-links {
+    display: none;
+  }
+
+  /* Show hamburger button */
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* Drawer shown via JS toggle class .open on .navbar */
+  .navbar.open .nav-drawer {
+    display: flex;
+  }
+}

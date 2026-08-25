@@ -1,0 +1,132 @@
+/*
+  About section layout:
+  - Full-width row: left dark image panel + right text panel
+  - Image panel bleeds to the LEFT edge of viewport
+  - Text panel is offset right with natural padding
+*/
+.about-section {
+  display: flex;
+  background-color: var(--fog-white);
+  align-items: stretch;
+  height: 848px;
+}
+
+.about-image-panel {
+  flex: 0 0 800px;
+  max-width: 800px;
+  background-color: var(--navy-deep);
+  border-radius: 0 32px 32px 0;
+  padding: 32px;
+  display: flex;
+}
+
+.about-image-wrapper {
+  position: relative;
+  width: 690px;
+  height: 700px;
+  margin: auto;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-text-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 71px 10% 48px 80px;
+}
+
+.about-title {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--navy-deep);
+  margin-bottom: 72px;
+  max-width: 800px;
+}
+
+.about-body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--charcoal-ink);
+  margin-bottom: 48px;
+  max-width: 800px;
+}
+
+.about-body:last-child {
+  margin-bottom: 0;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .about-section {
+    height: auto;
+    min-height: 600px;
+  }
+  .about-image-panel {
+    flex: 0 0 45%;
+    max-width: 45%;
+  }
+  .about-image-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+  .about-text-panel {
+    padding: 60px 5% 48px 48px;
+  }
+  .about-title {
+    margin-bottom: 40px;
+  }
+  .about-body {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .about-section {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .about-image-panel {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 0;
+    padding: 24px;
+    height: 360px;
+  }
+
+  .about-image-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  .about-text-panel {
+    padding: 48px 5%;
+  }
+
+  .about-title {
+    margin-bottom: 32px;
+  }
+
+  .about-body {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+}

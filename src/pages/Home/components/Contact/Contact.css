@@ -1,0 +1,221 @@
+.contact-section {
+  display: flex;
+  width: 100%;
+  height: 800px;
+}
+
+.contact-left {
+  width: 50%;
+  position: relative;
+  background-color: var(--navy-deep);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 120px 48px;
+}
+
+.contact-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.contact-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(19, 30, 48, 0.7);
+  mix-blend-mode: multiply;
+  z-index: 2;
+}
+
+.contact-quote {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: right;
+  line-height: 1.3;
+}
+
+.contact-right {
+  width: 50%;
+  background-color: var(--navy-deep);
+  padding: 120px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-size: clamp(36px, 5vw, 76px);
+  font-weight: 800;
+  margin-bottom: 48px;
+  max-width: 700px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 700px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background-color: var(--fog-white);
+  border: none;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--charcoal-ink);
+  outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0aab2;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.form-submit-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.submit-btn {
+  background-color: #ffffff;
+  color: var(--navy-deep);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 12px 48px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .contact-title {
+    margin-bottom: 32px;
+  }
+  .contact-left {
+    padding: 80px 32px;
+    min-height: auto;
+  }
+  .contact-right {
+    padding: 80px 5%;
+  }
+  .contact-quote {
+    font-size: 26px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .contact-section {
+    flex-direction: column;
+    height: auto;
+  }
+  .contact-left {
+    width: 100%;
+    min-height: 320px;
+    padding: 60px 5%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .contact-quote {
+    text-align: left;
+    font-size: 22px;
+  }
+  .contact-right {
+    width: 100%;
+    padding: 60px 5%;
+  }
+  .contact-title {
+    margin-bottom: 28px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .submit-btn {
+    font-size: 16px;
+    padding: 12px 36px;
+  }
+}
+
+/* --- Light Theme (Used on About Page) --- */
+.contact-section.theme-light {
+  background-color: #ffffff;
+}
+
+.contact-section.theme-light .contact-right {
+  background-color: #ffffff;
+}
+
+.contact-section.theme-light .contact-title {
+  color: var(--navy-deep);
+}
+
+.contact-section.theme-light .form-group label {
+  color: var(--navy-deep);
+}
+
+.contact-section.theme-light .form-group input,
+.contact-section.theme-light .form-group textarea {
+  background-color: #ffffff;
+  border: 1px solid var(--navy-deep);
+  color: var(--navy-deep);
+}
+
+.contact-section.theme-light .form-group input::placeholder,
+.contact-section.theme-light .form-group textarea::placeholder {
+  color: rgba(19, 30, 48, 0.5); /* Semi-transparent navy */
+}
+
+.contact-section.theme-light .submit-btn {
+  background-color: var(--navy-deep);
+  color: #ffffff;
+}
+.contact-section.theme-light .submit-btn:hover {
+  opacity: 0.85;
+}
