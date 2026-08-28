@@ -326,3 +326,49 @@
 .contact-section.theme-light .submit-btn:hover {
   opacity: 0.85;
 }
+
+/* Success Card Styling */
+.contact-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 60px 40px;
+  border-radius: 12px;
+  max-width: 700px;
+  color: #fff;
+}
+
+.theme-light .contact-success-card {
+  background-color: rgba(19, 30, 48, 0.03);
+  border-color: rgba(19, 30, 48, 0.1);
+  color: var(--navy-deep);
+}
+
+.contact-success-card .success-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--signal-blue);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.contact-success-card h3 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.contact-success-card p {
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.9;
+}

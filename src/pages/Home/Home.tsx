@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../../components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
@@ -11,6 +12,10 @@ import Footer from '../../components/Footer/Footer';
 const Home: React.FC = () => {
   return (
     <>
+      <Helmet>
+        <title>Home | DiViSe - Defence Marine Consulting</title>
+        <meta name="description" content="DiViSe Defence Marine Consulting. Partner with Decades of Naval & Shipbuilding Leadership." />
+      </Helmet>
       <Navbar />
       <Hero />
       <About />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import './Contact.css';
 
 interface ContactProps {
@@ -98,57 +99,65 @@ const Contact: React.FC<ContactProps> = ({ theme = 'dark' }) => {
       
       <div className="contact-right">
         <h2 className="contact-title">Contact Us</h2>
-        <form className="contact-form" onSubmit={handleSubmit}>
-          {/* Honeypot field */}
-          <input 
-            type="text" 
-            name="_botcheck" 
-            style={{ position: 'absolute', opacity: 0, top: -10000, left: -10000 }} 
-            tabIndex={-1} 
-            aria-hidden="true" 
-            value={formData._botcheck}
-            onChange={handleChange}
-          />
-          
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="John Doe" required value={formData.name} onChange={handleChange} />
-            </div>
-            <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" required value={formData.email} onChange={handleChange} onBlur={handleBlur} />
-              {errors.email && <span className="field-error">{errors.email}</span>}
-            </div>
+        {status === 'success' ? (
+          <div className="contact-success-card">
+            <div className="success-icon">✓</div>
+            <h3>Thank You!</h3>
+            <p>Your message has been received.<br/>One of our team members will get back to you shortly.</p>
           </div>
-          <div className="form-row">
-            <div className={`form-group phone-group ${errors.phone ? 'has-error' : ''}`}>
-              <label htmlFor="phone">Phone No.</label>
-              <div className="phone-input-wrapper">
-                <span className="phone-prefix">+91</span>
-                <input type="tel" id="phone" name="phone" placeholder="98765 43210" required value={formData.phone} onChange={handleChange} onBlur={handleBlur} />
+        ) : (
+          <form className="contact-form" onSubmit={handleSubmit}>
+            {/* Honeypot field */}
+            <input 
+              type="text" 
+              name="_botcheck" 
+              style={{ position: 'absolute', opacity: 0, top: -10000, left: -10000 }} 
+              tabIndex={-1} 
+              aria-hidden="true" 
+              value={formData._botcheck}
+              onChange={handleChange}
+            />
+            
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required value={formData.name} onChange={handleChange} />
               </div>
-              {errors.phone && <span className="field-error">{errors.phone}</span>}
+              <div className={`form-group ${errors.email ? 'has-error' : ''}`}>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" required value={formData.email} onChange={handleChange} onBlur={handleBlur} />
+                {errors.email && <span className="field-error">{errors.email}</span>}
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="org">Organization</label>
-              <input type="text" id="org" name="org" placeholder="John Doe's LLC" value={formData.org} onChange={handleChange} />
+            <div className="form-row">
+              <div className={`form-group phone-group ${errors.phone ? 'has-error' : ''}`}>
+                <label htmlFor="phone">Phone No.</label>
+                <div className="phone-input-wrapper">
+                  <span className="phone-prefix">+91</span>
+                  <input type="tel" id="phone" name="phone" placeholder="98765 43210" required value={formData.phone} onChange={handleChange} onBlur={handleBlur} />
+                </div>
+                {errors.phone && <span className="field-error">{errors.phone}</span>}
+              </div>
+              <div className="form-group">
+                <label htmlFor="org">Organization</label>
+                <input type="text" id="org" name="org" placeholder="John Doe's LLC" value={formData.org} onChange={handleChange} />
+              </div>
             </div>
-          </div>
-          <div className="form-group message-group">
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" placeholder="Your Message..." required value={formData.message} onChange={handleChange}></textarea>
-          </div>
-          <div className="form-submit-wrapper">
-            <button 
-              type="submit" 
-              className={`submit-btn ${status}`} 
-              disabled={status === 'submitting'}
-            >
-              {status === 'submitting' ? 'Submitting...' : status === 'success' ? 'Message Sent!' : 'Submit'}
-            </button>
-          </div>
-        </form>
+            <div className="form-group message-group">
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" placeholder="Your Message..." required value={formData.message} onChange={handleChange}></textarea>
+            </div>
+            <div className="form-submit-wrapper">
+              <button 
+                type="submit" 
+                className={`submit-btn ${status}`} 
+                disabled={status === 'submitting'}
+              >
+                {status === 'submitting' ? 'Submitting...' : 'Submit'}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );
