@@ -98,10 +98,20 @@ const Services: React.FC = () => {
 
   const onMouseMove = (e: React.MouseEvent) => {
     if (!isDown || !scrollRef.current) return;
-    e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 1.5; // Scroll speed
     scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (!scrollRef.current) return;
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
   };
 
   const scrollNext = () => {
@@ -141,11 +151,15 @@ const Services: React.FC = () => {
           onMouseLeave={onMouseLeave}
           onMouseUp={onMouseUp}
           onMouseMove={onMouseMove}
+          onKeyDown={onKeyDown}
+          tabIndex={0}
+          role="region"
+          aria-label="Services carousel"
         >
           {services.map((s) => (
             <div key={s.id} className="service-card">
               <div className="service-card-bg-wrap">
-                <img src={s.image} alt={s.title} className="service-card-bg" />
+                <img src={s.image} alt={s.title} className="service-card-bg" loading="lazy" />
                 <div className="service-card-overlay"></div>
               </div>
               <div className="service-card-body">

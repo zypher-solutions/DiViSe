@@ -5,10 +5,17 @@
   - Text panel is offset right with natural padding
 */
 .about-section {
-  display: flex;
   background-color: var(--fog-white);
-  align-items: stretch;
   height: 848px;
+}
+
+.about-inner {
+  display: flex;
+  align-items: stretch;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 }
 
 .about-image-panel {
@@ -18,6 +25,17 @@
   border-radius: 0 32px 32px 0;
   padding: 32px;
   display: flex;
+  position: relative;
+}
+
+.about-image-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 50vw;
+  background-color: var(--navy-deep);
 }
 
 .about-image-wrapper {
@@ -96,7 +114,7 @@
 
 /* Mobile */
 @media (max-width: 900px) {
-  .about-section {
+  .about-inner {
     flex-direction: column;
     height: auto;
   }
@@ -128,5 +146,9 @@
   .about-body {
     font-size: 15px;
     margin-bottom: 24px;
+  }
+
+  .about-image-panel::before {
+    display: none;
   }
 }

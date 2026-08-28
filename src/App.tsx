@@ -1,8 +1,9 @@
-
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
+import Loader from './components/Loader/Loader';
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const About = lazy(() => import('./pages/About/About'));
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
@@ -26,12 +27,15 @@ function ScrollHandler() {
 function App() {
   return (
     <BrowserRouter>
+      <Loader />
       <ScrollHandler />
       <div className="app-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Suspense>
       </div>
     </BrowserRouter>
   );

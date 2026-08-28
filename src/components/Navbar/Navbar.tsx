@@ -6,6 +6,7 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesVisible, setServicesVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,7 +19,52 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setServicesVisible(false);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setServicesVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.4 }
+    );
+    const servicesEl = document.getElementById('services');
+    if (servicesEl) observer.observe(servicesEl);
+    return () => {
+      if (servicesEl) observer.unobserve(servicesEl);
+    };
+  }, [location.pathname]);
+
   const close = () => setOpen(false);
+
+  const handleContactClick = (e: React.MouseEvent) => {
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      e.preventDefault();
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    }
+    close();
+  };
+
+  const handleServicesClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    close();
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    close();
+  };
 
   const isFloatingPage = location.pathname === '/' || location.pathname === '/about';
   const isTransparent = isFloatingPage && !scrolled && !open;
@@ -28,16 +74,16 @@ const Navbar: React.FC = () => {
   return (
     <nav className={navbarClasses}>
       <div className="navbar-inner">
-        <Link to="/" className="logo-link" onClick={close}>
+        <Link to="/" className="logo-link" onClick={handleLogoClick}>
           <img src="/logo.png" alt="DiViSe Logo" className="logo" />
         </Link>
 
         {/* Desktop nav */}
         <div className="nav-links">
-          <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link>
-          <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`}>About</Link>
-          <Link to="/#services" className="nav-link">Services</Link>
-          <Link to="/about#contact" className="btn-contact">Contact</Link>
+          <Link to="/" className={`nav-link ${location.pathname === '/' && !servicesVisible ? 'active' : ''}`} onClick={close}>Home</Link>
+          <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={close}>About</Link>
+          <Link to="/#services" className={`nav-link ${servicesVisible ? 'active' : ''}`} onClick={handleServicesClick}>Services</Link>
+          <Link to="#contact" className="btn-contact" onClick={handleContactClick}>Contact</Link>
         </div>
 
         {/* Hamburger button — mobile only */}
@@ -54,10 +100,10 @@ const Navbar: React.FC = () => {
 
       {/* Mobile drawer */}
       <div className="nav-drawer">
-        <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={close}>Home</Link>
+        <Link to="/" className={`nav-link ${location.pathname === '/' && !servicesVisible ? 'active' : ''}`} onClick={close}>Home</Link>
         <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={close}>About</Link>
-        <Link to="/#services" className="nav-link" onClick={close}>Services</Link>
-        <Link to="/about#contact" className="btn-contact" onClick={close}>Contact</Link>
+        <Link to="/#services" className={`nav-link ${servicesVisible ? 'active' : ''}`} onClick={handleServicesClick}>Services</Link>
+        <Link to="#contact" className="btn-contact" onClick={handleContactClick}>Contact</Link>
       </div>
     </nav>
   );

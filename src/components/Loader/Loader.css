@@ -1,0 +1,67 @@
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--navy-deep);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+}
+
+.loader-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-logo-wrapper {
+  position: relative;
+  width: 140px;
+  opacity: 0;
+  animation: logoFadeIn 0.8s ease-out forwards;
+}
+
+.loader-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.loader-progress {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  height: 2px;
+  background-color: var(--signal-blue);
+  width: 0%;
+  animation: progressLoad 1s ease-out forwards;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes progressLoad {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-logo-wrapper, .loader-progress {
+    animation: none;
+    opacity: 1;
+    width: 100%;
+  }
+  .loader-overlay {
+    transition: none;
+  }
+}
