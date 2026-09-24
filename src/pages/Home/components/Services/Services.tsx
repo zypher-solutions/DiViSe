@@ -10,7 +10,7 @@ const services = [
   },
   {
     id: 2,
-    title: 'Make in India &\nIndigénisation',
+    title: 'Make in India &\nIndigenisation',
     image: '/service-bg-2.png',
     icon: '/service-icon-bg-2.png',
   },
